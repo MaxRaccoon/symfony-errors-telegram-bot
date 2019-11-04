@@ -141,14 +141,14 @@ class ErrorsManager
                         $error->setUrl($request->getPathInfo());
                         $error->setReferrer($request->headers->get('referer', ''));
                         $error->setGlobalVars($request->server->all());
+                        $error->setRequestContent($request->getContent());
                     } else {
                         $error->setUrl('');
                         $error->setReferrer('');
                         $error->setGlobalVars([]);
                     }
                     $error->setBaseHost($this->baseHost);
-                    $error->setHostName(gethostname());
-                    $error->setRequestContent($request->getContent());
+                    $error->setHostName(gethostname());                   
 
                     $token = $this->tokenStorage->getToken();
                     if (null !== $token) {
